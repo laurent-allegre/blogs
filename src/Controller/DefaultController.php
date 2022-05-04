@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
+use App\Form\CommentType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,14 +33,28 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="vue_article", requirements={"id" = "\d+"}, methods={"GET"})
+     * @Route("/{id}", name="vue_article", requirements={"id" = "\d+"}, methods={"GET", "POST"})
      */
-    public function vueArticle(ArticleRepository $articleRepository, $id)
+    public function vueArticle(Article $article, Request $request, EntityManagerInterface $manager)
     {
-        $article = $articleRepository->find($id);
+        $comment = new Comment();
+        $comment->setArticle($article);
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute('vue_article', ['id' => $article->getId()]);
+        }
+
 
         return $this->render('default/vue.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'form' => $form->createView()
         ]);
     }
 
