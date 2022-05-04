@@ -21,6 +21,15 @@
             </div>
         {% endfor %}
 
+        {# read and display several types of flash messages #}
+        {% for label, messages in app.flashes(['danger', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <div class="col-md-6">
             {{ form_start(form)}}
             {{ form_label(form.contenu, null, {'label_attr':{'class': 'form-label'}}) }}
