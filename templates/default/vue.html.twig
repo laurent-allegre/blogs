@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}
+    {{ article.titre }}
+{% endblock %}
+
+{% block body %}
+
+
+    <h1>{{ article.titre }}</h1>
+    <small>{{ article.dateCreation|date('d/m/Y')}}</small>
+    <p> {{ article.contenu }} </p>
+    <h2>Commentaires</h2>
+    <div class="row">
+        {% for comment in article.comments%}
+            <div class="col-md-12">
+                <small> Le {{ comment.dateComment|date("d/m/Y") }} par : {{ comment.author }}</small>
+                <p>{{ comment.contenu }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+

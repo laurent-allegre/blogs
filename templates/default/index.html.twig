@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Articles{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+
+
+    <h1>Liste des articles ! ✅</h1>
+
+    {{articles|taille}}
+</div>
+<div>
+   {% for article in articles %}
+       <li><a href="{{ path('vue_article',{'id': article.id }) }}">{{ article.titre }}</a></li>
+   {% endfor %}
+
+</div>
+
+{% endblock %}
