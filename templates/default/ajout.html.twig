@@ -6,31 +6,34 @@
 {% block body %}
 
     {% if not form.vars.valid %}
-        {{ form_start(form, {'attr':{'class':'was-validated'}}) }}
+        {{ form_start(form, {'attr':{'class':'was-validated mb-5'}}) }}
     {% else %}
-     {{ form_start(form) }}
+     {{ form_start(form, {'attr':{'class':'mb-5'}}) }}
     {% endif %}
 
-
-    {{ form_label(form.titre, null, {'label_attr': {'class': 'form-label'}}) }}
-    {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
-    <div class="invalid-feedback">
-        {{ form_errors(form.titre)}}
+    <div class="form-group mt-2">
+        {{ form_label(form.titre, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+        <div class="invalid-feedback">
+            {{ form_errors(form.titre)}}
+        </div>
     </div>
-
-
-    {{ form_label(form.contenu, null, {'label_attr': {'class': 'form-label'}}) }}
-    {{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }}
-
-    {{ form_label(form.dateCreation, null, {'label_attr': {'class': 'form-label'}}) }}
-    {{ form_widget(form.dateCreation, {'attr': {'class': 'form-control'}}) }}
-
-    {{ form_label(form.categories, null, {'label_attr': {'class': 'form-label'}}) }}
-    {{ form_widget(form.categories, {'attr': {'class': 'form-control'}}) }}
-
-    {{ form_widget(form.brouillon,{'attr': {'class': 'btn btn-info'}} )}}
-    {{ form_widget(form.publier,{'attr': {'class': 'btn btn-success'}} )}}
-
+    <div class="form-group mt-2">
+        {{ form_label(form.contenu, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group mt-2">
+        {{ form_label(form.dateCreation, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.dateCreation, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group mt-2">
+        {{ form_label(form.categories, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.categories, {'attr': {'class': 'form-control'}}) }}
+    </div>
+        <div class="form-group mt-2">
+        {{ form_widget(form.brouillon,{'attr': {'class': 'btn btn-info'}} )}}
+        {{ form_widget(form.publier,{'attr': {'class': 'btn btn-success'}} )}}
+    </div>
         {{ form_rest(form)}}
 
     {{ form_end(form) }}
