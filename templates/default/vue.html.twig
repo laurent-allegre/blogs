@@ -10,6 +10,7 @@
 
 
     <h1>{{ article.titre }}</h1>
+    <p><a class="btn btn-info btn-sm" href="{{ path('edition_article', {'id':article.id })}}">Editer</a></p>
     <small>{{ article.dateCreation|date('d/m/Y')}}</small>
     <p> {{ article.contenu }} </p>
     <h2>Commentaires</h2>
