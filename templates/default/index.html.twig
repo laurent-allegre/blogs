@@ -5,9 +5,9 @@
 {% block body %}
 
 
-    <div class="example-wrapper">
+    <div class="example-wrapper mt-5">
         <h1>Les derniers articles {% if brouillon%} en brouillon {% endif %} ! ✅</h1>
-        {{articles|taille}}
+        <p>{{articles|taille}}</p>
     </div>
 
    <div class="row mt-2 mb-2">
