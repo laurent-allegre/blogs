@@ -27,7 +27,8 @@ class DefaultController extends AbstractController
     public function listeArticles(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findBy([
-            'state' => 'publier'
+            'state' => ['publier', 'a publier']
+
         ]);
 
 
