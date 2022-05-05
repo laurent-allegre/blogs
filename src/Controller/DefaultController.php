@@ -93,7 +93,7 @@ class DefaultController extends AbstractController
               $article->setState('brouillon');
           }
           else{
-              $article->setState('publier');
+              $article->setState('a publier');
           }
 
           if ($article->getId() === null){
