@@ -5,13 +5,19 @@
 
 {% block body %}
 
+    {% if not form.vars.valid %}
+        {{ form_start(form, {'attr':{'class':'was-validated'}}) }}
+    {% else %}
+     {{ form_start(form) }}
+    {% endif %}
 
-    {{ form_start(form) }}
-
-    {{ form_errors(form)}}
 
     {{ form_label(form.titre, null, {'label_attr': {'class': 'form-label'}}) }}
     {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+    <div class="invalid-feedback">
+        {{ form_errors(form.titre)}}
+    </div>
+
 
     {{ form_label(form.contenu, null, {'label_attr': {'class': 'form-label'}}) }}
     {{ form_widget(form.contenu, {'attr': {'class': 'form-control'}}) }}

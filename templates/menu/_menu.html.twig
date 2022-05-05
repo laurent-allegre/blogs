@@ -8,8 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="{{ path('liste_articles')}}">Accueil</a>
-                <a class="nav-link active" aria-current="page" href="{{ path('ajout-article')}}">Ajouter article</a>
-                <a class="nav-link active" aria-current="page" href="{{ path('brouillon-article')}}">Les brouillons</a>
+                {% if is_granted('ROLE_ADMIN')%}
+                 <a class="nav-link active" aria-current="page" href="{{ path('ajout-article')}}">Ajouter article</a>
+                  <a class="nav-link active" aria-current="page" href="{{ path('brouillon-article')}}">Les brouillons</a>
+                {% endif %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_logout')}}">Déconnexion</a>
+                {% else %}
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_login')}}">Connexion</a>
+                {% endif %}
+
             </div>
         </div>
     </div>
